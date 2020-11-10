@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session 
-from flask_mysqldb import MySQL 
+from flask_mysqldb import MySQL
 import MySQLdb.cursors 
 import re 
   
@@ -15,14 +15,15 @@ app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'dbregistration'
   
 mysql = MySQL(app) 
-  
-@app.route('/') 
-@app.route('/login', methods =['GET', 'POST']) 
-def login(): 
+
+
+@app.route('/')
+@app.route('/login', methods =['GET', 'POST'])
+def login():
     msg = '' 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form: 
         username = request.form['username'] 
-        password = request.form['password'] 
+        password = request.form['password']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor) 
         cursor.execute('SELECT * FROM accounts WHERE username = % s AND password = % s', (username, password, )) 
         account = cursor.fetchone() 
@@ -34,17 +35,19 @@ def login():
             return render_template('index.html', msg = msg) 
         else: 
             msg = 'Incorrect username / password !'
-    return render_template('login.html', msg = msg) 
-  
+    return render_template('login.html', msg = msg)
+
+
 @app.route('/logout') 
 def logout(): 
     session.pop('loggedin', None) 
     session.pop('id', None) 
     session.pop('username', None) 
     return redirect(url_for('login')) 
-  
+
+
 @app.route('/register', methods =['GET', 'POST']) 
-def register(): 
+def register():
     msg = '' 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form : 
         username = request.form['username'] 
@@ -67,4 +70,8 @@ def register():
             msg = 'You have successfully registered !'
     elif request.method == 'POST': 
         msg = 'Please fill out the form !'
-    return render_template('register.html', msg = msg) 
+    return render_template('register.html', msg = msg)
+
+
+if __name__ == "__main__":
+    app.run()
