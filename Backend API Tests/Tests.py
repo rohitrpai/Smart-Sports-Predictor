@@ -4,7 +4,7 @@ from requests.auth import HTTPBasicAuth
 
 def test_get_for_application_homepage_check_status_code_equals_200():
     try:
-        response = requests.get("http://127.0.0.1:5000/")
+        response = requests.get("http://127.0.0.1:5000")
         assert response.status_code == 200
         print('Connection Successful!')
     except AssertionError as e:
@@ -15,9 +15,9 @@ def test_get_for_application_homepage_check_status_code_equals_200():
 def check_sign_in():
     try:
         response = requests.get('http://127.0.0.1:5000/login',
-                                auth=HTTPBasicAuth('test', 'test'), verify=False)
+                                auth=('test', 'sample'), verify=False)
         assert response.status_code == 200
-        print('Sign in success')
+        print('Sign in successful!')
     except AssertionError as e:
         print('Sign in error!')
         e.args += ('Received response code:', response.status_code)
