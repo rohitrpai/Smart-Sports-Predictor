@@ -21,7 +21,7 @@ from selenium import webdriver
 
 def test_sign_in_functionality():
     driver = webdriver.Chrome()
-    driver.get('C:\\Users\\rohit\\PycharmProjects\\Smart-Sports-Predictor\\Frontend\\login.html#')
+    driver.get('http://127.0.0.1:5000/login')
     driver.maximize_window()
 
     username = driver.find_element_by_id("Uname")
@@ -39,7 +39,7 @@ def test_sign_in_functionality():
 
 def test_sign_up_functionality():
     driver = webdriver.Chrome()
-    driver.get('C:\\Users\\rohit\\PycharmProjects\\Smart-Sports-Predictor\\Frontend\\registration.html#')
+    driver.get('http://127.0.0.1:5000/register')
     driver.maximize_window()
 
     name = driver.find_element_by_id("Uname")
