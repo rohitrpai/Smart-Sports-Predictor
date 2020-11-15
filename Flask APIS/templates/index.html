@@ -13,7 +13,7 @@
   <body>
         <div class="navbar navbar-inverse navbar-fixed-left">
             <div class="text-center">
-                <img src="img/profile.png" alt="profile picture" class="nav-profile">
+                <img src="{{url_for('static', filename='profile.png')}}" alt="profile picture" class="nav-profile">
             </div>
             <ul class="nav navbar-nav">
                 <li><p class="nav-list-icon"></p><a href="#">Your Progress</a></li>
@@ -35,11 +35,11 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 col-12">
                     <p class="s-header">Profile Picture</p>
                     <div class="pt-md-3 s-context">
-                        <img src="img/background.png" class="w-100" id="changedImg" src="background">
+                        <img src="{{url_for('static', filename='background.png')}}" class="w-100" id="changedImg" src="background">
 
                         <div class="chosenFile">
                             <p>Select Image</p>
@@ -71,6 +71,6 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="/index.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
