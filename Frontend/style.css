@@ -1,0 +1,201 @@
+a, a:active, a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+body.bck-body {  
+    margin: 0;  
+    padding: 0;  
+    background-image: url("img/wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Arial';  
+}  
+.login{  
+    overflow: hidden;  
+    margin: auto;
+    margin-top: 10px;   
+    padding: 20px;  
+    background: #23463f;  
+    border-radius: 15px ;  
+          
+}  
+h1{  
+    margin-top: 20px;   
+    text-align: center;  
+    color: #ffffff;
+}  
+label{  
+    color: #08ffd1;  
+    font-size: 17px;
+    margin: auto;  
+    text-align: center; 
+}  
+#Uname{  
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+}  
+#Pass{  
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+      
+}  
+#log{  
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: blue;
+    font-family: 'Arial';
+}  
+.stadiom{
+    background-image: url("img/stadiom.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%; 
+    margin: 6% auto;
+    border-radius: 3px;
+    box-shadow: 0 0 20px #202020;
+    min-height: -webkit-fill-available;
+    color: #000;
+}
+
+.signin{
+    background:#EEEEEE;
+    width: 55%;
+}
+.trial{
+    background:#EEEEEE;
+    width: 60%;
+    box-shadow: -5px 5px 5px rgba(255, 255, 255, .2);
+    margin-top: 4%; 
+    margin-bottom: 15%;
+    padding: 40px;
+}
+p {   
+    text-align: center;  
+    color: #ffffff;
+    font-size: 300%;  
+}
+h2{   font-size: 260%;
+    margin-top: 5%;
+    text-align: center;  
+    color: #aaaaaa;  
+}
+h3{   font-size: 180%;
+    text-align: center;  
+    color: #aaaaaa;  
+}
+.loginbuttons{
+    padding: 2% 5%;
+    background-color: #202020;
+    color: #EEEEEE;
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+.img {
+    width: 50%;
+    margin-bottom: 20px;
+}
+.text-head { 
+    font-size: 150%;
+    color: #AAAAAA;
+}
+.text-content {
+    font-size: 150%;
+    color: #888888;
+}
+
+.navbar-fixed-left {
+    position: fixed;
+    border-radius: 0;
+    background-color: rgb(236, 235, 235);
+    display: block;
+}
+
+.navbar-fixed-left .navbar-nav li {
+    float: none;
+    padding: 12px 8px;
+}
+
+.nav-profile {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.nav-list-icon {
+    display: inline-flex;
+    border-radius: 100%;
+    width: 8px;
+    height: 8px;
+    background: grey;
+    margin-right: 10px;
+}
+
+.nav-list-icon + a { 
+    color: #202020!important;
+}
+
+.s-header {
+    padding: 10px 0;
+    border-bottom: 2px solid rgb(236, 235, 235);
+    font-size: 36px;
+    color: rgb(95, 95, 95);
+}
+
+.s-context input, .s-context select {
+    padding: 10px 4px;
+    width: 240px;
+}
+
+.s-context input:first-of-type {
+    margin-right: 25px;
+}
+
+.s-context select {
+    margin-top: 25px;
+}
+
+.chosenFile p {
+    margin-top: 20px;
+    padding: 16px 10px;
+    text-align: center;
+    color: rgb(95, 95, 95);
+    background-color: rgb(236, 235, 235);
+}
+
+.chosenFile {
+    position: relative;
+}
+
+.chosenFile input {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    padding: 13px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.btnPredict {
+    padding: 10px 80px;
+    margin-top: -7px;
+}
+
+@media screen and (max-width: 770px) {
+    .navbar-fixed-left {
+        width: 100%;
+    }
+
+    .index-container {
+        padding-top: 300px;
+        max-width: 100%!important;
+    }
+}
