@@ -42,6 +42,10 @@ def test_sign_up_functionality():
     driver.get('http://127.0.0.1:5000/register')
     driver.maximize_window()
 
+    '''register = driver.find_element_by_css_selector("body > div.signin > a.loginbuttons1")
+    register.click()
+    time.sleep(1)'''
+
     name = driver.find_element_by_id("Uname")
     surname = driver.find_element_by_xpath("/html/body/div/form/input[2]")
     user_name = driver.find_element_by_xpath("/html/body/div/form/input[3]")
@@ -50,10 +54,20 @@ def test_sign_up_functionality():
     login_button = driver.find_element_by_id("log")
     name.send_keys("test")
     surname.send_keys("run")
-    user_name.send_keys("test run")
+    user_name.send_keys("testrun")
     password.send_keys("password")
     remember_me.click()
     login_button.click()
+
+    time.sleep(2)
+
+    username = driver.find_element_by_id("Uname")
+    pswd = driver.find_element_by_name("Pass")
+    login = driver.find_element_by_name("log")
+    username.send_keys("testrun")
+    pswd.send_keys("password")
+    login.click()
+
     time.sleep(5)
 
     driver.close()
