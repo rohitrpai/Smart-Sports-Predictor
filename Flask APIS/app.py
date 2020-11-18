@@ -25,9 +25,9 @@ def main():
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     msg = '' 
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        username = request.form['username']
-        password = request.form['password']
+    if request.method == 'POST' and 'Uname' in request.form and 'Pass' in request.form:
+        username = request.form['Uname']
+        password = request.form['Pass']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor) 
         cursor.execute('SELECT * FROM accounts WHERE username = % s AND password = % s', (username, password, )) 
         account = cursor.fetchone()
@@ -39,6 +39,8 @@ def login():
             return render_template('index.html', msg = msg) 
         else:
             msg = 'Incorrect username / password !'
+    elif request.method == 'POST' and 'Uname' not in request.form or 'Pass' not in request.form:
+        msg = 'Please enter your username/password!'
     return render_template('login.html', msg = msg)
 
 
@@ -53,10 +55,10 @@ def logout():
 @app.route('/register', methods =['GET', 'POST']) 
 def register():
     msg = '' 
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form : 
-        username = request.form['username'] 
-        password = request.form['password'] 
-        email = request.form['email'] 
+    if request.method == 'POST' and 'Uname' in request.form and 'Pass' in request.form and 'Email_id' in request.form :
+        username = request.form['Uname']
+        password = request.form['Pass']
+        email = request.form['Email_id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor) 
         cursor.execute('SELECT * FROM accounts WHERE username = % s', (username, )) 
         account = cursor.fetchone() 

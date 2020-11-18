@@ -10,33 +10,25 @@
 <body>
     <h1>Registration Page</h1><br>
     <div class="login">
-    <form id="login" method="get" action="login.php">
-        <label style="margin: 10px;"><b>Name
-        </b>
-        </label>
-        <input style="margin: 10px;" type="text" name="Uname" id="Uname" placeholder="Name">
-        <br><br>
-        <label style="margin: 10px;"><b>Surname
-        </b>
-        </label>
-        <input style="margin: 10px;" type="text" name="Uname" id="Uname" placeholder="Surname">
-        <br><br>
+    <form id="login" action="{{ url_for('register') }}" method="post">
+      <div class="msg">{{ msg }}</div>
         <label style="margin: 10px;"><b>User Name
         </b>
         </label>
-        <input style="margin: 10px;" type="text" name="Uname" id="Uname" placeholder="Username">
+        <input style="margin: 10px;" type="text" name="Uname" id="Uname" placeholder="User Name">
         <br><br>
         <label style="margin: 10px;"><b>Password
         </b>
         </label>
         <input style="margin: 10px;" type="Password" name="Pass" id="Pass" placeholder="Password">
         <br><br>
-        <a href="{{ url_for('login') }}"><input type="button" name="log" id="log" value="Finish Registration"> </a>
+        <label style="margin: 10px;"><b>Email Id
+        </b>
+        </label>
+        <input style="margin: 10px;" type="text" name="Email_Id" id="Email_Id" placeholder="Email Id">
         <br><br>
-        <input type="checkbox" id="check">
-        <span>Remember me</span>
+        <input type="submit" name="log" id="log" value="Finish Registration">
         <br><br>
-        <a style="font-family: 'Arial';" href="#">Forgot Password</a>
     </form>
 </div>
 </body>

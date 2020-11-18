@@ -9,8 +9,9 @@
 </head>    
 <body>    
     <h1>Login Page</h1><br>    
-    <div class="login">    
-    <form id="login" method="get" action="login.php">    
+    <div class="login">
+    <form id="login" action="{{ url_for('login') }}" method="post">
+      <div class="msg">{{ msg }}</div>
         <label style="margin: 10px;"><b>User Name     
         </b>    
         </label>    
@@ -20,8 +21,8 @@
         </b>    
         </label>    
         <input style="margin: 10px;" type="Password" name="Pass" id="Pass" placeholder="Password">    
-        <br><br>    
-        <a href="{{ url_for('home') }}"> <input type="button" name="log" id="log" value="Log In"> </a>
+        <br><br>
+        <input type="submit" name="log" id="log" value="Log In"></br></br>
         <br><br>    
         <input type="checkbox" id="check">    
         <span>Remember me</span>    
