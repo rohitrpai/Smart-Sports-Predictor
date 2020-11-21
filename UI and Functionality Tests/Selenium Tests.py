@@ -47,26 +47,26 @@ def test_sign_up_functionality():
     time.sleep(1)'''
 
     name = driver.find_element_by_id("Uname")
-    surname = driver.find_element_by_xpath("/html/body/div/form/input[2]")
-    user_name = driver.find_element_by_xpath("/html/body/div/form/input[3]")
+    #surname = driver.find_element_by_xpath("/html/body/div/form/input[2]")
+    #user_name = driver.find_element_by_xpath("/html/body/div/form/input[3]")
     password = driver.find_element_by_id("Pass")
-    remember_me = driver.find_element_by_id("check")
+    #remember_me = driver.find_element_by_id("check")
     login_button = driver.find_element_by_id("log")
     name.send_keys("test")
-    surname.send_keys("run")
-    user_name.send_keys("testrun")
+    #surname.send_keys("run")
+    #user_name.send_keys("testrun")
     password.send_keys("password")
-    remember_me.click()
+    #remember_me.click()
     login_button.click()
 
-    time.sleep(2)
+    '''time.sleep(2)
 
     username = driver.find_element_by_id("Uname")
     pswd = driver.find_element_by_name("Pass")
     login = driver.find_element_by_name("log")
     username.send_keys("testrun")
     pswd.send_keys("password")
-    login.click()
+    login.click()'''
 
     time.sleep(5)
 

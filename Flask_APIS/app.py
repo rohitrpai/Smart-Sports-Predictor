@@ -12,12 +12,12 @@ from Flask_APIS.dependencies import configure
 app = Flask(__name__)
   
   
-'''app.secret_key = 'your secret key'
+app.secret_key = 'your secret key'
   
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'admin'
 app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'dbregistration' '''
+app.config['MYSQL_DB'] = 'dbregistration'
   
 mysql = MySQL(app)
 
@@ -43,10 +43,9 @@ def login(service: MyService):
     if request.method == 'POST' and 'Uname' in request.form and 'Pass' in request.form:
         username = request.form['Uname']
         password = request.form['Pass']
-        if not username:
+        if not username or not password:
             msg = 'Please enter your username/password!'
-        elif not password:
-            msg = 'Please enter your username/password!'
+            return render_template('login.html', msg=msg)
         #cursor = service.get_db_cursor()
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE username = % s AND password = % s', (username, password, )) 
@@ -56,9 +55,11 @@ def login(service: MyService):
             session['id'] = account['id'] 
             session['username'] = account['username'] 
             msg = 'Logged in successfully !'
-            return render_template('index.html', msg = msg) 
+            return redirect(url_for("home"))
         else:
             msg = 'Incorrect username / password !'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
     return render_template('login.html', msg = msg)
 
 
@@ -103,8 +104,16 @@ def register(service: MyService):
 @app.route('/home', methods =['GET', 'POST'])
 def home():
     msg = ''
-    if request.method == 'POST' or request.method == 'GET':
-        return render_template('index.html', msg = msg)
+    if request.method == 'GET':
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return render_template('login.html', msg='You need to sign in!')
+        else:
+            return render_template('index.html', msg)
+    '''elif request.method == 'POST' or request.method == 'GET':
+        msg = 'Failed'
+        return msg'''
+    #Implement dropdown ML thing
 
 
 FlaskInjector(app=app, modules=[configure])
