@@ -10,25 +10,26 @@
 <body>
     <h1>Registration Page</h1><br>
     <div class="login">
-    <form id="login" action="{{ url_for('register') }}" method="post">
+    <form action="{{ url_for('register') }}" method="post" id="login">
       <div class="msg">{{ msg }}</div>
         <label style="margin: 10px;"><b>User Name
         </b>
         </label>
-        <input style="margin: 10px;" type="text" name="Uname" id="Uname" placeholder="User Name">
+        <input style="margin: 10px;" id="username" name="username" type="text" placeholder="Username" class="textbox"/>
         <br><br>
         <label style="margin: 10px;"><b>Password
         </b>
         </label>
-        <input style="margin: 10px;" type="Password" name="Pass" id="Pass" placeholder="Password">
+        <input style="margin: 10px;" id="password" name="password" type="password" placeholder="Password" class="textbox"/>
         <br><br>
         <label style="margin: 10px;"><b>Email Id
         </b>
         </label>
-        <input style="margin: 10px;" type="text" name="Email_Id" id="Email_Id" placeholder="Email Id">
+        <input style="margin: 10px;" id="email" name="email" type="text" placeholder="Email ID" class="textbox"/>
         <br><br>
         <input type="submit" name="log" id="log" value="Finish Registration">
         <br><br>
+        <a style="font-family: 'Arial';" href="{{ url_for('login') }}">Sign in</a>
     </form>
 </div>
 </body>
