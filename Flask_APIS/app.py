@@ -35,7 +35,11 @@ def get_data(service: MyService):
 @app.route('/main', methods =['GET', 'POST'])
 def main():
     if request.method == 'GET':
-        return render_template('main.html')
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return render_template('main.html')
+        else:
+            return redirect(url_for("home"))
 
 
 @inject
@@ -62,6 +66,12 @@ def login(service: MyService):
             msg = 'Incorrect username / password !'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
+    elif request.method == 'GET':
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return render_template('login.html')
+        else:
+            return redirect(url_for("home"))
     return render_template('login.html', msg = msg)
 
 
@@ -101,6 +111,12 @@ def register(service: MyService):
             msg = 'You have successfully registered !'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
+    elif request.method == 'GET':
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return render_template('registration.html')
+        else:
+            return redirect(url_for("home"))
     return render_template('registration.html', msg = msg)
 
 
