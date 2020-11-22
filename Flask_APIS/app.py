@@ -52,7 +52,6 @@ def login(service: MyService):
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", [username, password])
         account = cursor.fetchone()
-        print(account)
         if account: 
             session['loggedin'] = True
             #session['id'] = account['id']
