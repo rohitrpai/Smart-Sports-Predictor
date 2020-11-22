@@ -59,7 +59,8 @@ def login(service: MyService):
         if account: 
             session['loggedin'] = True
             #session['id'] = account['id']
-            session['username'] = account['username'] 
+            session['username'] = account['username']
+            session['fname'] = account ['first_name']
             msg = 'Logged in successfully !'
             return redirect(url_for("home"))
         else:
@@ -87,7 +88,9 @@ def logout():
 @app.route('/register', methods =['GET', 'POST']) 
 def register(service: MyService):
     msg = '' 
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+    if request.method == 'POST' and 'firstname' in request.form and 'lastname' in request.form and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
@@ -97,14 +100,18 @@ def register(service: MyService):
         account = cursor.fetchone()
         if account:
             msg = 'Account already exists !'
+        elif not firstname or not lastname or not username or not password or not email:
+            msg = 'Please fill out the form !'
+        elif not re.match(r'[A-Za-z]', firstname):
+            msg = 'First Name must contain only alphabets!'
+        elif not re.match(r'[A-Za-z]', lastname):
+            msg = 'Last Name must contain only alphabets!'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Invalid email address !'
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers !'
-        elif not username or not password or not email:
-            msg = 'Please fill out the form !'
         else:
-            cursor.execute("INSERT INTO users(username,password,email_id) VALUES (% s, % s, % s)", [username, password, email])
+            cursor.execute("INSERT INTO users(first_name,last_name,username,password,email_id) VALUES (% s, % s,% s, % s, % s)", [firstname, lastname, username, password, email])
             #service.get_sql_instance().connection.commit()
             mysql.connection.commit()
             cursor.close()
@@ -128,7 +135,7 @@ def home():
         if uname == "Unknown":
             return render_template('login.html', msg='You need to sign in!')
         else:
-            return render_template('index.html')
+            return render_template('index.html', msg='Hello, '+session['fname']+'!')
     '''elif request.method == 'POST' or request.method == 'GET':
         msg = 'Failed'
         return msg'''
