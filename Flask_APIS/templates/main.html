@@ -1,0 +1,44 @@
+{% extends "bootstrap/base.html" %}
+<head>
+    {% block styles %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}Home Page{% endblock %}
+</head>
+{% block content %}
+<body>
+<div class="stadiom">
+    <p style="font-family: Impact, Charcoal, sans-serif;">SMART SPORTS PREDICTOR</p>
+</div>
+<div class="signin">
+    <h2>Start Your 30-day Free Trial!</h2>
+    <h3>Get you personalized dashboard now</h3>
+    <a class="loginbuttons1" href="{{ url_for('register') }}">REGISTER NOW</a>
+    <a class="loginbuttons2" href="{{ url_for('login') }}">LOGIN</a>
+
+</div>
+<div class="trial">
+    <div class="imgdiv1"><img class="img1" src="{{url_for('static', filename='cloud.png')}}"></div>
+    <div class="imgdiv2"><img class="img2" src="{{url_for('static', filename='people.png')}}"></div>
+    <div class="text1"><h4>Free <br> Predictions</h4></div>
+    <div class="text2"><h4>Personalized <br> Dashboard</h4></div>
+    <div class="text3"><h4>Registration gives you access to <br> unlimited prediction analysis</h4></div>
+    <div class="text4"><h4>Master your own progress with a <br> personalized dashboard</h4></div>
+</div>
+
+</body>
+{% endblock %}
+{% block scripts %}
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+</html>
