@@ -2,77 +2,54 @@ import time
 from selenium import webdriver
 
 
-'''def test1():
-
-    driver = webdriver.Chrome()
-
-    driver.get("https://www.python.org")
-    driver.maximize_window()
-    print(driver.title)
-
-    search_bar = driver.find_element_by_name("q")
-    search_bar.clear()
-    search_bar.send_keys("getting started with python")
-    search_bar.send_keys(Keys.RETURN)
-
-    print(driver.current_url)
-    driver.close() '''
-
-
 def test_sign_in_functionality():
     driver = webdriver.Chrome()
-    driver.get('http://127.0.0.1:5000/login')
+    driver.get('http://127.0.0.1:5000')
     driver.maximize_window()
 
-    username = driver.find_element_by_id("Uname")
-    password = driver.find_element_by_id("Pass")
+    go_to_login = driver.find_element_by_css_selector("body > div.signin > a.loginbuttons2")
+    go_to_login.click()
+
+    username = driver.find_element_by_id("username")
+    password = driver.find_element_by_id("password")
     remember_me = driver.find_element_by_id("check")
     login_button = driver.find_element_by_id("log")
-    username.send_keys("test@test.com")
-    password.send_keys("password")
+    username.send_keys("test")
+    password.send_keys("test")
     remember_me.click()
     login_button.click()
-    time.sleep(5)
+    time.sleep(3)
+
+    msg = driver.find_element_by_css_selector("body > div.container > div.row > div.col-md-8.col-12 > div > div")
+    assert msg.is_displayed()
 
     driver.close()
 
 
-def test_sign_up_functionality():
+def test_sign_up_fails_for_existing_user():
     driver = webdriver.Chrome()
     driver.get('http://127.0.0.1:5000/register')
     driver.maximize_window()
 
-    '''register = driver.find_element_by_css_selector("body > div.signin > a.loginbuttons1")
-    register.click()
-    time.sleep(1)'''
+    lastname = driver.find_element_by_id("lastname")
+    firstname = driver.find_element_by_id("firstname")
+    user_name = driver.find_element_by_id("username")
+    password = driver.find_element_by_id("password")
+    email_id= driver.find_element_by_id("email")
+    finish_reg = driver.find_element_by_id("log")
+    lastname.send_keys("test")
+    firstname.send_keys("test")
+    user_name.send_keys("test")
+    password.send_keys("test")
+    finish_reg.click()
+    time.sleep(2)
 
-    name = driver.find_element_by_id("Uname")
-    #surname = driver.find_element_by_xpath("/html/body/div/form/input[2]")
-    #user_name = driver.find_element_by_xpath("/html/body/div/form/input[3]")
-    password = driver.find_element_by_id("Pass")
-    #remember_me = driver.find_element_by_id("check")
-    login_button = driver.find_element_by_id("log")
-    name.send_keys("test")
-    #surname.send_keys("run")
-    #user_name.send_keys("testrun")
-    password.send_keys("password")
-    #remember_me.click()
-    login_button.click()
+    msg = driver.find_element_by_css_selector("#login > div")
+    assert msg.is_displayed()
 
-    '''time.sleep(2)
-
-    username = driver.find_element_by_id("Uname")
-    pswd = driver.find_element_by_name("Pass")
-    login = driver.find_element_by_name("log")
-    username.send_keys("testrun")
-    pswd.send_keys("password")
-    login.click()'''
-
-    time.sleep(5)
-
-    driver.close()
+    driver.quit()
 
 
 if __name__ == "__main__":
     test_sign_in_functionality()
-    test_sign_up_functionality()
+    test_sign_up_fails_for_existing_user()

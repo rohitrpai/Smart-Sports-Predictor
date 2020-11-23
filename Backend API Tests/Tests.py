@@ -24,6 +24,18 @@ def check_sign_in():
         raise
 
 
+'''def check_sign_in():
+    try:
+        credentials = {'username': 'test', 'password': 'aaaaa'}
+        response = requests.post('http://127.0.0.1:5000/login', data = credentials)
+        assert response.status_code == 200
+        print('Sign in successful!')
+    except AssertionError as e:
+        print('Sign in error!')
+        e.args += ('Received response code:', response.status_code)
+        raise'''
+
+
 if __name__ == "__main__":
     test_get_for_application_homepage_check_status_code_equals_200()
     check_sign_in()
