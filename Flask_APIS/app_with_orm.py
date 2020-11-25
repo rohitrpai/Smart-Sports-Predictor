@@ -65,7 +65,7 @@ def login():
         if account:
             session['loggedin'] = True
             # session['id'] = account['id']
-            # session['username'] = account['username']
+            session['username'] = username
             # session['fname'] = account['first_name']
             msg = 'Logged in successfully !'
             return redirect(url_for("home"))
@@ -132,12 +132,11 @@ def register():
 def home():
     msg = ''
     if request.method == 'GET':
-        return render_template('index.html')
-        '''uname = session.get("username", "Unknown")
+        uname = session.get("username", "Unknown")
         if uname == "Unknown":
-            return render_template('login.html', msg='You need to sign in!')
+            return redirect(url_for('login'))
         else:
-            return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!')'''
+            return render_template('index.html', msg='Hello ' + session['username'] + ', welcome to your dashboard!')
     '''elif request.method == 'POST' or request.method == 'GET':
         msg = 'Failed'
         return msg'''
