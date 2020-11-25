@@ -9,18 +9,19 @@ def test_sign_in_functionality():
 
     go_to_login = driver.find_element_by_css_selector("body > div.signin > a.loginbuttons2")
     go_to_login.click()
+    time.sleep(2)
 
     username = driver.find_element_by_id("username")
     password = driver.find_element_by_id("password")
     remember_me = driver.find_element_by_id("check")
-    login_button = driver.find_element_by_id("log")
+    login_button = driver.find_element_by_name("log")
     username.send_keys("test")
     password.send_keys("test")
     remember_me.click()
     login_button.click()
     time.sleep(3)
 
-    msg = driver.find_element_by_css_selector("body > div.container > div.row > div.col-md-8.col-12 > div > div")
+    msg = driver.find_element_by_css_selector("body > div.container > div.row > div > div > div.msg")
     assert msg.is_displayed()
 
     driver.close()
