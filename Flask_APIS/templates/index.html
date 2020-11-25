@@ -11,61 +11,85 @@
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <title>Smartsporspredicter</title>
 </head>
-<body>
+<body class = "indexbody">
 <div class="navbar navbar-inverse navbar-fixed-left">
-    <div class="text-center">
-        <img alt="profile picture" class="nav-profile" src="{{url_for('static', filename='profile.png')}}">
-    </div>
     <ul class="nav navbar-nav">
-        <li><p class="nav-list-icon"></p><a href="#">Your Progress</a></li>
-        <li><p class="nav-list-icon"></p><a href="#">Your Profile</a></li>
-        <li><p class="nav-list-icon"></p><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><p class="nav-list-icon"></p><a class="alogout" href="{{ url_for('logout') }}">Logout</a></li>
     </ul>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-12">
-            <p class="s-header">User Details</p>
+        <div class="col-md-12 col-12">
+            <p class="s-header">Dashboard</p>
             <div class="p-md-3 s-context">
                 <div class="msg">{{ msg }}</div>
-                <select>
-                    <option>Role</option>
-                    <option>Normal User</option>
-                    <option>Premium User</option>
-                </select>
+                <div>
+        <p class="s-header mb-0">Details</p>
+                    <div class="s-context">
+            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Matches played</th>
+      <th scope="col">Runs scored</th>
+      <th scope="col">Wickets taken values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><button type="submit" class="btn btn-secondary" ><a style="font-family: 'Arial';" href="#" class="aedit">Edit</a></button></th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+
+    </div>
             </div>
         </div>
 
-        <div class="col-md-4 col-12">
-            <p class="s-header">Profile Picture</p>
-            <div class="pt-md-3 s-context">
-                <img class="w-100" id="changedImg" src="{{url_for('static', filename='background.png')}}"
-                     src="background">
 
-                <div class="chosenFile">
-                    <p>Select Image</p>
-                    <input id="input-image" type="file">
-                </div>
-            </div>
-        </div>
     </div>
     <div>
         <p class="s-header mb-0">Prediction</p>
         <div class="s-context">
             <select>
-                <option>Team 1</option>
-                <option>Team 2</option>
-                <option>Team 3</option>
-                <option>Team 4</option>
+                <option>Sunrisers Hyderabad</option>
+                <option>Rising Pure Supergiants</option>
+                <option>Royal Challengers Bangalore</option>
+                <option>Mumbai Indians</option>
+                <option>Gujarat Lions</option>
+                <option>Kolkata Knight Riders</option>
+                <option>Kings XI Punjab</option>
+                <option>Delhi Daredevils</option>
+                <option>Deccan Chargers</option>
+                <option>Chennai Super Kings</option>
+                <option>Rajasthan Royals</option>
+                <option>Pune Warriors</option>
+                <option>Kochi Tuskers Kerala</option>
+                <option>Delhi Capitals</option>
             </select>
             <select class="mx-5">
-                <option>Team 1</option>
-                <option>Team 2</option>
-                <option>Team 3</option>
-                <option>Team 4</option>
+                <option>Rising Pure Supergiants</option>
+                <option>Sunrisers Hyderabad</option>
+                <option>Royal Challengers Bangalore</option>
+                <option>Mumbai Indians</option>
+                <option>Gujarat Lions</option>
+                <option>Kolkata Knight Riders</option>
+                <option>Kings XI Punjab</option>
+                <option>Delhi Daredevils</option>
+                <option>Deccan Chargers</option>
+                <option>Chennai Super Kings</option>
+                <option>Rajasthan Royals</option>
+                <option>Pune Warriors</option>
+                <option>Kochi Tuskers Kerala</option>
+                <option>Delhi Capitals</option>
             </select>
-            <button class="btnPredict btn btn-primary" type="button">PREDICT</button>
-            <p class="d-inline-block ml-3 predictText"></p>
+            <button class="btnPredict btn btn-secondary" type="button">PREDICT</button>
+            <p class="d-inline-block ml-3 predictText pprediction"></p>
         </div>
     </div>
 </div>

@@ -2,7 +2,23 @@ a, a:link, a:active, a:hover {
     text-decoration: none;
     color: #AAAAAA;
 }
-
+.messagep{
+    text-align: center;
+    color: white;
+    font-size: 100%;
+}
+a.aedit{
+    float: right;
+    font-family: 'Arial';
+    background-color: transparent;
+    color: white;
+}
+a.alogout{
+    float: right;
+    font-family: 'Arial';
+    background-color: transparent;
+    color: black;
+}
 .navbar-fixed-left {
     position: fixed;
     border-radius: 0;
@@ -71,19 +87,31 @@ a, a:link, a:active, a:hover {
     opacity: 0;
     cursor: pointer;
 }
-
+.pprediction{
+    margin-top: 8%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 150%;
+}
 .btnPredict {
     padding: 10px 80px;
     margin-top: -7px;
 }
+body.indexbody{
+    margin: 0;
+    padding: 0;
+    background-image: url("indexbody.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Arial';
+}
 
-body {
+body.bck-body {
     margin: 0;
     padding: 0;
     background-image: url("wallpaper.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
-
+    background-size: cover;
     font-family: 'Arial';
 }
 
@@ -93,7 +121,7 @@ body {
     margin: auto;
     margin-top: 10px;
     padding: 30px;
-    background: #23463f;
+    background: #555555;
     border-radius: 15px;
 
 }
@@ -105,12 +133,7 @@ h1 {
     padding: 20px;
 }
 
-label {
-    color: #08ffd1;
-    font-size: 17px;
-    margin: auto;
-    text-align: center;
-}
+
 
 #Uname {
     width: 300px;
@@ -303,7 +326,7 @@ h1 {
 }
 
 label {
-    color: #08ffd1;
+    color: #ffffff;
     font-size: 17px;
     margin: auto;
     text-align: center;
@@ -376,12 +399,6 @@ a {
 }
 
 
-p {
-    margin-top: 8%;
-    text-align: center;
-    color: #ffffff;
-    font-size: 300%;
-}
 
 h2 {
     font-size: 260%;

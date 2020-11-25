@@ -12,40 +12,48 @@
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
 </head>
 {% block content %}
-<body>
+<body class="bck-body">
 <h1>Registration Page</h1><br>
 <div class="login">
-    <form action="{{ url_for('register') }}" method="post" id="login">
-      <div class="msg">{{ msg }}</div>
-        <label style="margin: 10px;"><b>First Name
-        </b>
-        </label>
-        <input style="margin: 10px;" id="firstname" name="firstname" type="text" placeholder="First Name" class="textbox"/>
-        <br><br>
-        <label style="margin: 10px;"><b>Last Name
-        </b>
-        </label>
-        <input style="margin: 10px;" id="lastname" name="lastname" type="text" placeholder="Last Name" class="textbox"/>
-        <br><br>
-        <label style="margin: 10px;"><b>User Name
-        </b>
-        </label>
-        <input style="margin: 10px;" id="username" name="username" type="text" placeholder="Username" class="textbox"/>
-        <br><br>
-        <label style="margin: 10px;"><b>Password
-        </b>
-        </label>
-        <input style="margin: 10px;" id="password" name="password" type="password" placeholder="Password" class="textbox"/>
-        <br><br>
-        <label style="margin: 10px;"><b>Email Id
-        </b>
-        </label>
-        <input style="margin: 10px;" id="email" name="email" type="text" placeholder="Email ID" class="textbox"/>
-        <br><br>
+<form action="{{ url_for('register') }}" method="post" id="login">
+   <div class="msg">{{ msg }}</div>
+    <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="textbox" name="firstname" id="firstname" placeholder="First Name">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Last name</label>
+    <div class="col-sm-10">
+      <input type="text" class="textbox" name="lastname" id="lastname" placeholder="Last name">
+    </div>
+  </div>
+         <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10">
+      <input type="text" class="textbox" name="username" id="username" placeholder="Username">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="textbox" name="password" id="password" placeholder="Password">
+    </div>
+  </div>
+        <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" class="textbox" name="email" id="email" placeholder="Email">
+    </div>
+  </div>
+    <div class="right">
         <input type="submit" name="log" id="log" value="Finish Registration">
-        <br><br>
-        <a style="font-family: 'Arial';" href="{{ url_for('login') }}">Sign in</a>
-    </form>
+    </div>
+    <div class="right">
+        <a style="font-family: 'Arial';" href="{{ url_for('login') }}">Already have an account? Click here.</a>
+    </div>
+</form>
 </div>
 </body>
 {% endblock %}

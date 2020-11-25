@@ -15,7 +15,7 @@ def test_get_for_application_homepage_check_status_code_equals_200():
 def check_sign_in():
     try:
         response = requests.get('http://127.0.0.1:5000/login',
-                                auth=('test', 'sample'), verify=False)
+                                auth=('test', 'test'), verify=False)
         assert response.status_code == 200
         print('Sign in successful!')
     except AssertionError as e:
@@ -26,7 +26,7 @@ def check_sign_in():
 
 '''def check_sign_in():
     try:
-        credentials = {'username': 'test', 'password': 'aaaaa'}
+        credentials = {'username': 'test', 'password': 'aaaaa', 'check': '', 'log': 'submit'}
         response = requests.post('http://127.0.0.1:5000/login', data = credentials)
         assert response.status_code == 200
         print('Sign in successful!')

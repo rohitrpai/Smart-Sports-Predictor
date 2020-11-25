@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".btnPredict").click(function () {
-        $(".predictText").text("Team1")
+        $(".predictText").text("Sunrisers Hyderabad")
     });
 
     $("#input-image").change(function () {
