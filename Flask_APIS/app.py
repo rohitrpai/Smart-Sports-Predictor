@@ -136,7 +136,7 @@ def home():
     if request.method == 'GET':
         uname = session.get("username", "Unknown")
         if uname == "Unknown":
-            return render_template('login.html', msg='You need to sign in!')
+            return redirect(url_for('login'))
         else:
             return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!')
     '''elif request.method == 'POST' or request.method == 'GET':
