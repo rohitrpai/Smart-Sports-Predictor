@@ -27,6 +27,7 @@ class users(db.Model):
 
 
 class dashboard(db.Model):
+    __tablename__ = 'dashboard'
     dashboard_id = Column(Integer, primary_key=True)
     email_id = Column(String, nullable=False)
     matches_played = Column(Integer)
@@ -63,10 +64,13 @@ def login():
             return render_template('login.html', msg=msg)
         account = users.query.filter_by(user_name=username, password=password).first()
         if account:
+            fname = account.first_name if hasattr(account, 'first_name') else None
+            email = account.email_id if hasattr(account, 'email_id') else None
             session['loggedin'] = True
             # session['id'] = account['id']
             session['username'] = username
-            # session['fname'] = account['first_name']
+            session['fname'] = fname
+            session['email_id'] = email
             msg = 'Logged in successfully !'
             return redirect(url_for("home"))
         else:
@@ -136,11 +140,55 @@ def home():
         if uname == "Unknown":
             return redirect(url_for('login'))
         else:
-            return render_template('index.html', msg='Hello ' + session['username'] + ', welcome to your dashboard!')
+            details = dashboard.query.filter_by(email_id=session['email_id']).first()
+            if details == None:
+                msg2 = '0'
+                msg3 = '0'
+                msg4 = '0'
+            else:
+                msg2 = str(details.matches_played if hasattr(details, 'matches_played') else None)
+                msg3 = str(details.runs_scored if hasattr(details, 'runs_scored') else None)
+                msg4 = str(details.wicket_taken if hasattr(details, 'wicket_taken') else None)
+            return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!',
+                                   msg2=msg2, msg3=msg3, msg4=msg4)
     '''elif request.method == 'POST' or request.method == 'GET':
         msg = 'Failed'
         return msg'''
     # Implement dropdown ML thing
+
+
+@app_with_orm.route('/edit', methods=['GET', 'POST'])
+def edit():
+    msg = ''
+    if request.method == 'GET':
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return redirect(url_for('login'))
+        else:
+            return render_template('details.html')
+    elif request.method == 'POST' and 'matches' in request.form and 'runs' in request.form and 'wickets' in request.form:
+        email_id = session['email_id']
+        matches = request.form['matches']
+        runs = request.form['runs']
+        wickets = request.form['wickets']
+
+        if not matches or not runs or not wickets:
+            msg5 = 'Please enter all the three field to update!'
+            return render_template('details.html', msg5=msg5)
+
+        flag = dashboard.query.filter_by(email_id=email_id).first()
+        if flag == None:
+            user_db = dashboard(email_id=email_id, matches_played=matches, runs_scored=runs, wicket_taken=wickets)
+            db.session.add(user_db)
+            db.session.commit()
+            return redirect(url_for('home'))
+        else:
+            flag.matches_played = matches
+            flag.runs_scored = runs
+            flag.wicket_taken = wickets
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('details.html')
 
 
 if __name__ == "__main__":
