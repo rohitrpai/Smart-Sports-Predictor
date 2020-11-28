@@ -20,35 +20,35 @@
     <div class="form-group row">
     <label  class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-10">
-      <input type="text" class="textbox" name="firstname" id="firstname" placeholder="First Name">
+      <input type="text" class="textbox form-control" name="firstname" id="firstname" placeholder="First Name">
     </div>
   </div>
     <div class="form-group row">
     <label  class="col-sm-2 col-form-label">Last name</label>
     <div class="col-sm-10">
-      <input type="text" class="textbox" name="lastname" id="lastname" placeholder="Last name">
+      <input type="text" class="textbox form-control" name="lastname" id="lastname" placeholder="Last name">
     </div>
   </div>
          <div class="form-group row">
     <label  class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" class="textbox" name="username" id="username" placeholder="Username">
+      <input type="text" class="textbox form-control" name="username" id="username" placeholder="Username">
     </div>
   </div>
   <div class="form-group row">
     <label  class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="textbox" name="password" id="password" placeholder="Password">
+      <input type="password" class="textbox form-control" name="password" id="password" placeholder="Password">
     </div>
   </div>
         <div class="form-group row">
     <label  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="text" class="textbox" name="email" id="email" placeholder="Email">
+      <input type="text" class="textbox form-control"  name="email" id="email" placeholder="Email">
     </div>
   </div>
     <div class="right">
-        <input type="submit" name="log" id="log" value="Finish Registration">
+        <button type="submit" class="btn btn-light mb-2" name="log" >Finish Registration</button>
     </div>
     <div class="right">
         <a style="font-family: 'Arial';" href="{{ url_for('login') }}">Already have an account? Click here.</a>
