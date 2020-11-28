@@ -62,6 +62,7 @@ def login(service: MyService):
             # session['id'] = account['id']
             session['username'] = account['username']
             session['fname'] = account['first_name']
+            session['email_id'] = account['email_id']
             msg = 'Logged in successfully !'
             return redirect(url_for("home"))
         else:
@@ -138,11 +139,57 @@ def home():
         if uname == "Unknown":
             return redirect(url_for('login'))
         else:
-            return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!')
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT * FROM dashboard WHERE email_id = %s", [session['email_id']])
+            details = cursor.fetchone()
+            if details == None:
+                msg2 = '0'
+                msg3 = '0'
+                msg4 = '0'
+            else:
+                msg2 = str(details['matches_played'])
+                msg3 = str(details['runs_scored'])
+                msg4 = str(details['wicket_taken'])
+            return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!', msg2=msg2, msg3=msg3, msg4=msg4)
     '''elif request.method == 'POST' or request.method == 'GET':
         msg = 'Failed'
         return msg'''
     # Implement dropdown ML thing
+
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    msg = ''
+    if request.method == 'GET':
+        uname = session.get("username", "Unknown")
+        if uname == "Unknown":
+            return redirect(url_for('login'))
+        else:
+            return render_template('details.html')
+    elif request.method == 'POST' and 'matches' in request.form and 'runs' in request.form and 'wickets' in request.form:
+        email_id = session['email_id']
+        matches = request.form['matches']
+        runs = request.form['runs']
+        wickets = request.form['wickets']
+
+        if not matches or not runs or not wickets:
+            msg5 = 'Please enter all the three field to update!'
+            return render_template('details.html', msg5=msg5)
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM dashboard WHERE email_id = %s", [email_id])
+        flag = cursor.fetchone()
+        if flag == None:
+            cursor.execute("INSERT INTO dashboard(email_id, matches_played, runs_scored, wicket_taken) VALUES(%s, %s, %s, %s)",[email_id, matches, runs, wickets])
+            mysql.connection.commit()
+            cursor.close()
+            return redirect(url_for('home'))
+        else:
+            cursor.execute("UPDATE dashboard SET matches_played=%s, runs_scored=%s, wicket_taken=%s WHERE email_id=%s",[matches, runs, wickets, email_id])
+            mysql.connection.commit()
+            cursor.close()
+            return redirect(url_for('home'))
+    return render_template('details.html')
 
 
 FlaskInjector(app=app, modules=[configure])

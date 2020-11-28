@@ -14,24 +14,28 @@
 <body class="indexbody">
 <h1 style="color: #2E2121">Details Page</h1><br>
 <div class="loginn">
-   <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" style="color: #2E2121">#</th>
-      <th scope="col" style="color: #2E2121">Matches played</th>
-      <th scope="col" style="color: #2E2121">Runs scored</th>
-      <th scope="col" style="color: #2E2121">Wickets taken values</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"><button type="submit" class="btn btn-dark" ><a style="font-family: 'Arial';" href="#" class="aeditt">Edit</a></button></th>
-      <td><input class="form-control" type="text" placeholder="Matches played"></td>
-      <td><input class="form-control" type="text" placeholder="Runs scored"></td>
-      <td><input class="form-control" type="text" placeholder="Wickets taken values"></td>
-    </tr>
-  </tbody>
-</table>
+    <form action="{{ url_for('edit') }}" method="post" id="edit" >
+       <div class="msg">{{ msg5 }}</div>
+        <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label" >Matches Played</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="Matches Played" id="matches" name="matches">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Runs Scored</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="runs" name="runs" placeholder="Runs Scored">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Wickets Taken</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="wickets" name="wickets" placeholder="Wickets Taken">
+    </div>
+  </div>
+      <button type="submit" class="btn btn-light mb-2" name="update" >Update</button>
+    </form>
 </div>
 </body>
 {% endblock %}
