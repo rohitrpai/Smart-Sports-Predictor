@@ -13,6 +13,12 @@ a.aedit{
     background-color: transparent;
     color: white;
 }
+a.aeditt{
+    float: right;
+    font-family: 'Arial';
+    background-color: transparent;
+    color: black;
+}
 a.alogout{
     float: right;
     font-family: 'Arial';
@@ -122,6 +128,16 @@ body.bck-body {
     margin-top: 10px;
     padding: 30px;
     background: #555555;
+    border-radius: 15px;
+
+}
+.loginn {
+    width: 40%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10px;
+    padding: 30px;
+    background: #CCCCCC;
     border-radius: 15px;
 
 }
