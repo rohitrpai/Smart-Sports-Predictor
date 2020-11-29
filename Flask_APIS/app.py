@@ -47,12 +47,14 @@ def main():
 @app.route('/login', methods=['GET', 'POST'])
 def login(service: MyService):
     msg = ''
+    status = 200
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
         if not username or not password:
             msg = 'Please enter your username/password!'
-            return render_template('login.html', msg=msg)
+            status = 401
+            return render_template('login.html', msg=msg), status
         # cursor = service.get_db_cursor()
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", [username, password])
@@ -67,15 +69,17 @@ def login(service: MyService):
             return redirect(url_for("home"))
         else:
             msg = 'Incorrect username / password !'
+            status=404
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
+        status=404
     elif request.method == 'GET':
         uname = session.get("username", "Unknown")
         if uname == "Unknown":
             return render_template('login.html')
         else:
             return redirect(url_for("home"))
-    return render_template('login.html', msg=msg)
+    return render_template('login.html', msg=msg), status
 
 
 @app.route('/logout')

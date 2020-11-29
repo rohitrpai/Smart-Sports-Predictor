@@ -37,11 +37,12 @@ def test_sign_up_fails_for_existing_user():
     user_name = driver.find_element_by_id("username")
     password = driver.find_element_by_id("password")
     email_id= driver.find_element_by_id("email")
-    finish_reg = driver.find_element_by_id("log")
+    finish_reg = driver.find_element_by_name("log")
     lastname.send_keys("test")
     firstname.send_keys("test")
     user_name.send_keys("test")
     password.send_keys("test")
+    email_id.send_keys("test")
     finish_reg.click()
     time.sleep(2)
 
@@ -52,5 +53,5 @@ def test_sign_up_fails_for_existing_user():
 
 
 if __name__ == "__main__":
-    test_sign_in_functionality()
+    #test_sign_in_functionality()
     test_sign_up_fails_for_existing_user()

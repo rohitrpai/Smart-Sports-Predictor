@@ -1,7 +1,5 @@
 import re
 from datetime import datetime
-
-import MySQLdb.cursors
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -34,6 +32,7 @@ class dashboard(db.Model):
     runs_scored = Column(Integer)
     wicket_taken = Column(Integer)
 
+
 def __init__(self, first_name, last_name, user_name, password, email_id):
    self.first_name = first_name
    self.last_name = last_name
@@ -56,12 +55,14 @@ def main():
 @app_with_orm.route('/login', methods=['GET', 'POST'])
 def login():
     msg = ''
+    status = 200
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
         if not username or not password:
             msg = 'Please enter your username/password!'
-            return render_template('login.html', msg=msg)
+            status = 401
+            return render_template('login.html', msg=msg), status
         account = users.query.filter_by(user_name=username, password=password).first()
         if account:
             fname = account.first_name if hasattr(account, 'first_name') else None
@@ -75,15 +76,17 @@ def login():
             return redirect(url_for("home"))
         else:
             msg = 'Incorrect username / password !'
+            status= 401
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
+        status = 401
     elif request.method == 'GET':
         uname = session.get("username", "Unknown")
         if uname == "Unknown":
             return render_template('login.html')
         else:
             return redirect(url_for("home"))
-    return render_template('login.html', msg=msg)
+    return render_template('login.html', msg=msg), status
 
 
 @app_with_orm.route('/logout')
