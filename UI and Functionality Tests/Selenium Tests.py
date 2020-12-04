@@ -53,5 +53,5 @@ def test_sign_up_fails_for_existing_user():
 
 
 if __name__ == "__main__":
-    #test_sign_in_functionality()
+    test_sign_in_functionality()
     test_sign_up_fails_for_existing_user()
