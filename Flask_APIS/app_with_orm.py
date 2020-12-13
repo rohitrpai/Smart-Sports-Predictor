@@ -153,11 +153,32 @@ def home():
                 msg3 = str(details.runs_scored if hasattr(details, 'runs_scored') else None)
                 msg4 = str(details.wicket_taken if hasattr(details, 'wicket_taken') else None)
             return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!',
-                                   msg2=msg2, msg3=msg3, msg4=msg4)
-    '''elif request.method == 'POST' or request.method == 'GET':
-        msg = 'Failed'
-        return msg'''
-    # Implement dropdown ML thing
+                                   msg2=msg2, msg3=msg3, msg4=msg4, msg5='')
+
+
+@app_with_orm.route('/predict', methods=['GET', 'POST'])
+def predict():
+    msg5 =''
+    uname = session.get("username", "Unknown")
+    if uname == "Unknown":
+        return redirect(url_for('login'))
+    if request.method == 'POST' and 'team1' in request.form and 'team2' in request.form:
+            team1 = request.form['team1']
+            team2 = request.form['team2']
+
+            # ML Thing
+            #msg5 =
+            details = dashboard.query.filter_by(email_id=session['email_id']).first()
+            if details == None:
+                msg2 = '0'
+                msg3 = '0'
+                msg4 = '0'
+            else:
+                msg2 = str(details.matches_played if hasattr(details, 'matches_played') else None)
+                msg3 = str(details.runs_scored if hasattr(details, 'runs_scored') else None)
+                msg4 = str(details.wicket_taken if hasattr(details, 'wicket_taken') else None)
+            return render_template('index.html', msg='Hello ' + session['fname'] + ', welcome to your dashboard!',
+                                   msg2=msg2, msg3=msg3, msg4=msg4, msg5=msg5)
 
 
 @app_with_orm.route('/edit', methods=['GET', 'POST'])
