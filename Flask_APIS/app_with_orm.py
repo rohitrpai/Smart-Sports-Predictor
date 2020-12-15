@@ -165,7 +165,7 @@ def predict():
     if request.method == 'POST' and 'team1' in request.form and 'team2' in request.form:
             team1 = request.form['team1']
             team2 = request.form['team2']
-
+            
             # ML Thing
             #msg5 =
             details = dashboard.query.filter_by(email_id=session['email_id']).first()
