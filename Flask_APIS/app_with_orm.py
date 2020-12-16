@@ -168,10 +168,10 @@ def predict():
     if uname == "Unknown":
         return redirect(url_for('login'))
     if request.method == 'POST' and 'team1' in request.form and 'team2' in request.form:
-            team1 = teams[request.form['team1']]
-            team2 = teams[request.form['team2']]
-            city =  cities[request.form['city']]
-            toss_winn = teams[request.form['toss_winn']]
+            team1 = request.form['team1']
+            team2 = request.form['team2']
+            city =  request.form['city']
+            toss_winn = request.form['toss_winn']
             input=np.expand_dims(np.array([team1,team2,city,toss_winn]),axis=0)
             print(os.getcwd())
             model = keras.models.load_model(os.path.join(os.getcwd(), "ML/model3.h5"))
@@ -180,9 +180,7 @@ def predict():
                 winner = list(teams.keys())[list(teams.values()).index(team1)]
             else:
                 winner = list(teams.keys())[list(teams.values()).index(team2)]
-            
-            # ML Thing
-            #msg5 =
+            msg5 = winner
             details = dashboard.query.filter_by(email_id=session['email_id']).first()
             if details == None:
                 msg2 = '0'
