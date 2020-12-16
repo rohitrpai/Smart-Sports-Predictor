@@ -4,6 +4,9 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, DateTime
+import numpy as np
+from tensorflow import keras
+import os
 
 app_with_orm = Flask(__name__)
 Bootstrap(app_with_orm)
@@ -158,14 +161,26 @@ def home():
 
 @app_with_orm.route('/predict', methods=['GET', 'POST'])
 def predict():
+    teams={'Sunrisers Hyderabad':1, 'Mumbai Indians':2, 'Gujarat Lions':3, 'Rising Pune Supergiant':4, 'Royal Challengers Bangalore':5, 'Kolkata Knight Riders':6, 'Delhi Daredevils':7, 'Kings XI Punjab':8, 'Chennai Super Kings':9, 'Rajasthan Royals':10, 'Deccan Chargers':11, 'Kochi Tuskers Kerala':12, 'Pune Warriors':13, 'Rising Pune Supergiants':14, 'Delhi Capitals':15}
+    cities = {'Hyderabad':1,'Pune':2,'Rajkot':3,'Indore':4,'Bangalore':5,'Mumbai':6,'Kolkata':7,'Delhi':8,'Chandigarh':9,'Kanpur':10,'Jaipur':11,'Chennai':12,'Cape Town':13,'Port Elizabeth':14,'Durban':15,'Centurion':16,'East London':17,'Johannesburg':18,'Kimberley':19,'Bloemfontein':20,'Ahmedabad':21,'Cuttack':22,'Nagpur':23,'Dharamsala':24,'Kochi':25,'Visakhapatnam':26,'Raipur':27,'Ranchi':28,'Abu Dhabi':29,'Sharjah':30,'Dubai':31,'Mohali':32,'Bengaluru':33 }
     msg5 =''
     uname = session.get("username", "Unknown")
     if uname == "Unknown":
         return redirect(url_for('login'))
     if request.method == 'POST' and 'team1' in request.form and 'team2' in request.form:
-            team1 = request.form['team1']
-            team2 = request.form['team2']
-
+            team1 = teams[request.form['team1']]
+            team2 = teams[request.form['team2']]
+            city =  cities[request.form['city']]
+            toss_winn = teams[request.form['toss_winn']]
+            input=np.expand_dims(np.array([team1,team2,city,toss_winn]),axis=0)
+            print(os.getcwd())
+            model = keras.models.load_model(os.path.join(os.getcwd(), "ML/model3.h5"))
+            pred = model.predict(input).argmax()
+            if pred == 0:
+                winner = list(teams.keys())[list(teams.values()).index(team1)]
+            else:
+                winner = list(teams.keys())[list(teams.values()).index(team2)]
+            
             # ML Thing
             #msg5 =
             details = dashboard.query.filter_by(email_id=session['email_id']).first()
