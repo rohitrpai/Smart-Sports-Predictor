@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <title>Smartsportspredicter</title>
+</head>
+<body class = "indexbody">
+<div class="navbar navbar-inverse navbar-fixed-left">
+    <ul class="nav navbar-nav">
+        <li><p class="nav-list-icon"></p><a class="alogout" href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <p class="s-header">Dashboard</p>
+            <div class="p-md-3 s-context">
+                <div class="msg">{{ msg }}</div>
+                <div>
+        <p class="s-header mb-0">Details</p>
+                    <div class="s-context">
+            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Matches played</th>
+      <th scope="col">Runs scored</th>
+      <th scope="col">Wickets taken values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><button type="submit" class="btn btn-secondary" ><a style="font-family: 'Arial';" href="{{ url_for('edit') }}" class="aedit">Edit</a></button></th>
+      <td>{{ msg2 }}</td>
+      <td>{{ msg3 }}</td>
+      <td>{{ msg4 }}</td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+
+    </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div>
+    <p class="s-header mb-0">Prediction</p>
+    <div class="s-context">
+    <form action = "{{url_for('predict')}}" method = "POST" id="prediction">
+    <select name="team1">
+        <option value="Mumbai Indians">Mumbai Indians</option>
+        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+        <option value="Rising Pure Supergiants">Rising Pure Supergiants</option>
+        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+        <option value="Gujarat Lions">Gujarat Lions</option>
+        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+        <option value="Kings XI Punjab">Kings XI Punjab</option>
+        <option value="Delhi Daredevils">Delhi Daredevils</option>
+        <option value="Deccan Chargers">Deccan Chargers</option>
+        <option value="Chennai Super Kings">Chennai Super Kings</option>
+        <option value="Rajasthan Royals">Rajasthan Royals</option>
+        <option value="Pune Warriors">Pune Warriors</option>
+        <option value="Kochi Tuskers Kerala">Kochi Tuskers Kerala</option>
+        <option value="Delhi Capitals">Delhi Capitals</option>
+    </select>
+    <select name="team2">
+        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+        <option value="Rising Pure Supergiants">Rising Pure Supergiants</option>
+        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+        <option value="Mumbai Indians">Mumbai Indians</option>
+        <option value="Gujarat Lions">Gujarat Lions</option>
+        <option value="Kings XI Punjab">Kings XI Punjab</option>
+        <option value="Delhi Daredevils">Delhi Daredevils</option>
+        <option value="Deccan Chargers">Deccan Chargers</option>
+        <option value="Chennai Super Kings">Chennai Super Kings</option>
+        <option value="Rajasthan Royals">Rajasthan Royals</option>
+        <option value="Pune Warriors">Pune Warriors</option>
+        <option value="Kochi Tuskers Kerala">Kochi Tuskers Kerala</option>
+        <option value="Delhi Capitals">Delhi Capitals</option>
+    </select>
+    <button type="submit" name="predict" class="btn btn-light mb-2">Predict</button>
+    </form>
+    <p class="d-inline-block ml-3 predictText pprediction"></p>
+    </div>
+    </div>
+
+{% block scripts %}
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/index.js"></script>
+{% endblock %}
+</body>
+</html>
